@@ -1,0 +1,21 @@
+:host {
+    ion-content {
+        //--background: linear-gradient(-135deg, var(--ion-color-medium), var(--ion-color-light))
+    }
+}
+.team-avatar {
+    width: 68px;
+    height: 68px;
+  }
+  .item-inner {
+    border-width: 0;
+  }
+
+.members {
+    ion-icon {
+        color: var(--ion-color-secondary)
+    }
+    strong {
+        color: var(--ion-color-secondary)
+    }
+}
