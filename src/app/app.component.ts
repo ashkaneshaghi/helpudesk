@@ -67,4 +67,6 @@ export class AppComponent {
     this.navCtrl.navigateRoot('');
   }
 
+  // Go to Edit Profile
+
 }
