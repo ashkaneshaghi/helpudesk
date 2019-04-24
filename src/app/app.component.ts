@@ -39,14 +39,14 @@ export class AppComponent {
   
         {
           title: 'Contact Us',
-          url: '/settings',
+          url: '/contact-us',
           direct: 'forward',
           icon: 'paper'
         },
   
         {
           title: 'FAQs',
-          url: '/settings',
+          url: '/faq',
           direct: 'forward',
           icon: 'chatboxes'
         }
@@ -68,5 +68,7 @@ export class AppComponent {
   }
 
   // Go to Edit Profile
-
+  goToEditProgile() {
+    this.navCtrl.navigateForward('edit-profile')
+  }
 }
