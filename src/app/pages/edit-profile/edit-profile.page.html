@@ -10,10 +10,10 @@
 <ion-content class="profile">
   <ion-card no-margin>
     <ion-card-content>
-      <img src="assets/img/male.jpg">
-      <h1 class="fw500">First Middle Last</h1>
+       <img src="assets/img/male.jpg">
+      <h1 class="fw500">First Middle Last<ion-icon style="margin-left:10px" [color]="decision ? 'secondary' : 'tertiary'" [name]="decision ? 'checkmark-circle' :'information-circle'"></ion-icon></h1>
       <h2 color="light" margin-bottom>Student</h2>
-      <ion-button icon-left color="secondary">
+      <ion-button icon-left color="secondary" (click)="changeStatus()" >
         <ion-icon name="photos"></ion-icon> 
         Edit / Add Avatar
       </ion-button>

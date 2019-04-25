@@ -1,13 +1,64 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start" color="light">
-      <ion-back-button color="light"></ion-back-button>
+      <ion-back-button color="light" visible></ion-back-button>
     </ion-buttons>
     <ion-title>Contact Us</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
+
+  <!-- LOGO About Us -->
+  <div class="bg-profile" text-center padding>
+    <img src="assets/img/aboutuslogo.png">
+  </div>
+
+  <!-- Contact Form -->
+  <div text-center padding>
+    
+    <ion-list class="contact">
+        <ion-list-header color="light">
+            <ion-label class="fw700">Team Members</ion-label>
+        </ion-list-header>
+
+    </ion-list>
+        <form [formGroup]="onContactUs" class="list-form">
+          <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <ion-icon name="bookmark" item-start></ion-icon>
+              Subject
+            </ion-label>
+            <ion-input color="secondary" type="text" name="subject" formControlName="subject"></ion-input>
+          </ion-item>
+          <p ion-text class="text08" *ngIf="onContactUs.get('subject').touched && onContactUs.get('subject').hasError('required')">
+            <ion-text color="warning">
+              Subject Cannot be Empty !!!
+            </ion-text>
+          </p>
+          <ion-item no-padding class="animated fadeInUp">
+            <ion-label position="floating">
+              <ion-icon name="create" item-start></ion-icon>
+              Text
+            </ion-label>
+            <ion-textarea color="secondary" placeholder="..." clearOnEdit="true" name="text" formControlName="text"></ion-textarea>
+          </ion-item>
+          <p ion-text class="text08" *ngIf="onContactUs.get('text').touched && onContactUs.get('text').hasError('required')">
+            <ion-text color="warning">
+              You Must Enter Text !!!
+            </ion-text>
+          </p>
+
+          </form>
+          <div>
+            <ion-button icon-left size="medium" expand="full" shape="round" color="secondary" (click)='contactUsInfoSend()' [disabled]="!onContactUs.valid" tappable> 
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              Send
+            </ion-button>     
+          </div>
+
+
+
+  </div>
 
 </ion-content>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start" color="light">
-      <ion-back-button color="light"></ion-back-button>
+      <ion-back-button color="light" visible></ion-back-button>
     </ion-buttons>
     <ion-title>About</ion-title>
   </ion-toolbar>
@@ -18,14 +18,14 @@
   <div text-center padding>
     
     <ion-list class="members">
-        <ion-list-header>
-            <ion-label>Team Members</ion-label>
+        <ion-list-header color="light">
+            <ion-label class="fw700">Team Members</ion-label>
         </ion-list-header>
   
         <ion-item margin-bottom>
           
             <ion-avatar slot="start" class="team-avatar">
-              <img src="assets/img/male.jpg">
+              <img src="assets/img/ash.jpg" >
             </ion-avatar>
             <ion-label>
               <strong>Ashkan Es Haghi</strong>
@@ -65,6 +65,12 @@
             
           </ion-item>
     </ion-list>
+    <ion-list>
+      <ion-list-header color="light">
+          <ion-label><strong>© 2019 helpUdesk All Rights Reserved</strong></ion-label>
+      </ion-list-header>
+    </ion-list>
+
   </div>
 
 </ion-content>
