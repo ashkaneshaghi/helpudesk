@@ -9,8 +9,6 @@ import { NavController, LoadingController, ToastController } from '@ionic/angula
 export class EditProfilePage implements OnInit {
 
   public decision: boolean = false;
-  fileUrl: any = null;
-  respData: any;
 
   constructor(
     public navCtrl: NavController,
