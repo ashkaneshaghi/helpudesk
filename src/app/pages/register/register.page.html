@@ -62,7 +62,9 @@
               </p>
 
               <ion-item no-padding class="animated fadeInUp">
-                <ion-label>Gender *</ion-label>
+                <ion-label>
+                    <ion-icon name="body" item-start></ion-icon>
+                    Gender *</ion-label>
                 <ion-select  name="gender" formControlName="gender"  placeholder="Select One">
                   <ion-select-option value="female">Female</ion-select-option>
                   <ion-select-option value="male">Male</ion-select-option>
@@ -75,7 +77,9 @@
                 </p>
 
                 <ion-item no-padding class="animated fadeInUp">
-                  <ion-label>Birthday *</ion-label>
+                  <ion-label>
+                      <ion-icon name="calendar" item-start></ion-icon>
+                      Birthday *</ion-label>
                   <ion-datetime name="birthday" formControlName="birthday" display-format="YYYY-MM-DD" placeholder="Select Date"></ion-datetime>
                 </ion-item>
                 <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('birthday').touched && onRegisterForm.get('birthday').hasError('required')">
