@@ -66,20 +66,31 @@ export class EditProfilePage implements OnInit {
   private onAddPhoneForm: FormGroup;
   private onAddEmergencyInfoForm: FormGroup;
   private onUpdateEmergencyInfoForm: FormGroup;
-  private onUpdateEmergencyContactForm: FormGroup
-  private onAddEmergencyContactForm: FormGroup
+  private onUpdateEmergencyContactForm: FormGroup;
+  private onAddEmergencyContactForm: FormGroup;
+  private onChangePasswordForm: FormGroup;
 
   constructor(
-    public navCtrl: NavController,
-    public menuCtrl: MenuController,
-    public toastCtrl: ToastController,
-    public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private menuCtrl: MenuController,
+    private toastCtrl: ToastController,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
     private formBuilder: FormBuilder,
-    public actionSheetController: ActionSheetController,
+    private actionSheetController: ActionSheetController,
     private http: HttpClient
   ) {
-    // Reading Lists From Local Files - Country
+    this.localFileReading();
+    this.changeStatus();
+    this.initializingTables();
+  }
+
+  ngOnInit() {
+    this.formsControling();
+  }
+
+  // Reading Local Files
+  localFileReading() {
     this.http.get('../../assets/lists/lists.json').subscribe(res => {
       this.countries = res['countries'];
       this.nationalities = res['nationalites'];
@@ -92,161 +103,181 @@ export class EditProfilePage implements OnInit {
       this.phoneType[0].open = true;
       this.emailType[0].open = true;
     })
-
-
-    this.changeStatus();
-    this.initializingTables();
-
   }
-
-  ngOnInit() {
-
-    this.onUpdateGeneralInfoForm = this.formBuilder.group({
-      'firstname': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'familyname': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'birthday': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'gender': ['', Validators.compose([
-        Validators.required
-      ])],
-      'nationality': ['', Validators.compose([
-        Validators.required
-      ])],
-
-    });
-
-    this.onUpdateAddressForm = this.formBuilder.group({
-      'addresstype': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'country': ['', Validators.compose([
-        Validators.required
-      ])],
-      'city': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'street1': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'postcode': [!empty, Validators.compose([
-        Validators.required
-      ])],
-
-    });
-
-    this.onAddAddressForm = this.formBuilder.group({
-      'addresstype': [null, Validators.compose([
-        Validators.required
-      ])],
-      'country': ['', Validators.compose([
-        Validators.required
-      ])],
-      'city': ['', Validators.compose([
-        Validators.required
-      ])],
-      'street1': ['', Validators.compose([
-        Validators.required
-      ])],
-      'postcode': ['', Validators.compose([
-        Validators.required
-      ])],
-
-    });
-
-    this.onUpdateEmailForm = this.formBuilder.group({
-      'email': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'emailtype': ['', Validators.compose([
-        Validators.required
-      ])],
-
-    });
   
-    this.onAddEmailForm = this.formBuilder.group({
-      'email': ['', Validators.compose([
-        Validators.required
-      ])],
-      'emailtype': ['', Validators.compose([
-        Validators.required
-      ])],
+ // Controling Forms Function
+  formsControling() {
+  this.onUpdateGeneralInfoForm = this.formBuilder.group({
+    'firstname': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'familyname': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'birthday': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'gender': ['', Validators.compose([
+      Validators.required
+    ])],
+    'nationality': ['', Validators.compose([
+      Validators.required
+    ])],
 
-    });
+  });
 
-    this.onUpdatePhoneForm = this.formBuilder.group({
-      'phone': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'phonetype': ['', Validators.compose([
-        Validators.required
-      ])],
+  this.onUpdateAddressForm = this.formBuilder.group({
+    'addresstype': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'country': ['', Validators.compose([
+      Validators.required
+    ])],
+    'city': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'street1': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'postcode': [!empty, Validators.compose([
+      Validators.required
+    ])],
 
-    });
+  });
+
+  this.onAddAddressForm = this.formBuilder.group({
+    'addresstype': [null, Validators.compose([
+      Validators.required
+    ])],
+    'country': ['', Validators.compose([
+      Validators.required
+    ])],
+    'city': ['', Validators.compose([
+      Validators.required
+    ])],
+    'street1': ['', Validators.compose([
+      Validators.required
+    ])],
+    'postcode': ['', Validators.compose([
+      Validators.required
+    ])],
+
+  });
+
+  this.onUpdateEmailForm = this.formBuilder.group({
+    'email': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'emailtype': ['', Validators.compose([
+      Validators.required
+    ])],
+
+  });
+
+  this.onAddEmailForm = this.formBuilder.group({
+    'email': ['', Validators.compose([
+      Validators.required
+    ])],
+    'emailtype': ['', Validators.compose([
+      Validators.required
+    ])],
+
+  });
+
+  this.onUpdatePhoneForm = this.formBuilder.group({
+    'phone': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'phonetype': ['', Validators.compose([
+      Validators.required
+    ])],
+
+  });
+
+  this.onAddPhoneForm = this.formBuilder.group({
+    'phone': ['', Validators.compose([
+      Validators.required
+    ])],
+    'phonetype': ['', Validators.compose([
+      Validators.required
+    ])],
+
+  });
   
-    this.onAddPhoneForm = this.formBuilder.group({
-      'phone': ['', Validators.compose([
-        Validators.required
-      ])],
-      'phonetype': ['', Validators.compose([
-        Validators.required
-      ])],
+  this.onAddEmergencyInfoForm = this.formBuilder.group({
+    'diseasename': ['', Validators.compose([
+      Validators.required
+    ])],
+  });
 
-    });
-    
-    this.onAddEmergencyInfoForm = this.formBuilder.group({
-      'diseasename': ['', Validators.compose([
-        Validators.required
-      ])],
-    });
+  this.onUpdateEmergencyInfoForm = this.formBuilder.group({
+    'diseasename': [!empty, Validators.compose([
+      Validators.required
+    ])],
+  });
+  
+  this.onUpdateEmergencyContactForm = this.formBuilder.group({
+    'fullname': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'relation': [!empty, Validators.compose([
+      Validators.required
+    ])],
+    'phonenumber': [!empty, Validators.compose([
+      Validators.required
+    ])],
+  });
+  
+  this.onAddEmergencyContactForm = this.formBuilder.group({
+    'fullname': ['', Validators.compose([
+      Validators.required
+    ])],
+    'relation': ['', Validators.compose([
+      Validators.required
+    ])],
+    'phonenumber': ['', Validators.compose([
+      Validators.required
+    ])],
+  });
 
-    this.onUpdateEmergencyInfoForm = this.formBuilder.group({
-      'diseasename': [!empty, Validators.compose([
-        Validators.required
-      ])],
-    });
-    
-    this.onUpdateEmergencyContactForm = this.formBuilder.group({
-      'fullname': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'relation': [!empty, Validators.compose([
-        Validators.required
-      ])],
-      'phonenumber': [!empty, Validators.compose([
-        Validators.required
-      ])],
-    });
-    
-    this.onAddEmergencyContactForm = this.formBuilder.group({
-      'fullname': ['', Validators.compose([
-        Validators.required
-      ])],
-      'relation': ['', Validators.compose([
-        Validators.required
-      ])],
-      'phonenumber': ['', Validators.compose([
-        Validators.required
-      ])],
-    });
+  this.onChangePasswordForm = this.formBuilder.group({
+    'password': [null, Validators.compose([
+      Validators.required, 
+      Validators.minLength(6), 
+      Validators.maxLength(30), 
+      Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,30}$')])],
+    'confirmpassword': [null, Validators.compose([
+      Validators.required
+    ])],
+  }, {validator: this.matchingPasswords('password', 'confirmpassword')});
 
+
+ }
+
+
+  // Checking Passwords Matching
+  matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+    return (group: FormGroup): {[key: string]: any} => {
+      let password = group.controls[passwordKey];
+      let confirmPassword = group.controls[confirmPasswordKey];
+
+      if (password.value !== confirmPassword.value) {
+        return {
+          mismatchedPasswords: true
+        };
+      }
+    }
   }
 
   // Selectable Lists
-  portChange(event: {
+  selectChange(event: {
     component: IonicSelectableComponent,
     value: any
   }) {
-    console.log('port:', event.value);
   }
 
 
   // Profile Progress Finishing
-
   changeStatus() {
     // TO-DO code to check Database for Profile Status will be here
     if (this.profileChecker) {
@@ -257,7 +288,7 @@ export class EditProfilePage implements OnInit {
     }
   }
 
-  // Saving changes in Edit Profile
+  // Storing Update from User
   async updateData(formname: string) {
     const loader = await this.loadingCtrl.create({
       duration: 1000
@@ -267,30 +298,122 @@ export class EditProfilePage implements OnInit {
     loader.onWillDismiss().then(async l => {
       switch (formname) {
         case ('generalInfo'): {
-          this.generalInfo = true;
-          this.address = true;
-          this.email = true;
-          this.phone = true;
-          this.emergencyInfo = true;
-          this.emergencyContact = true;
-          this.password = true;
+          this.updateRollback();
+          this.addRollback();
           this.btn_General = 'Edit';
           //
           // Storing Data for General Info // CODE
           const toast = await this.toastCtrl.create({
             showCloseButton: true,
-            message: 'Your Information Updated!!!',
+            message: 'Your Information has been updated!!!',
             duration: 3000,
             position: 'bottom'
           });
 
           toast.present();
-          this.profileChecker = true;
+          break;
+        }
+        case ('password'): {
+          this.updateRollback();
+          this.addRollback();
+          this.btn_password = 'Change Password';
+          //
+          // Storing Data for Password // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your Password has been changed !!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('address'): {
+          this.updateRollback();
+          this.addRollback();
+          this.btn_address = 'Edit';
+          //
+          // Storing Data for Address // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your Address has been updated !!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('email'): {
+          this.updateRollback();
+          this.addRollback();
+          this.btn_email = 'Edit';
+          //
+          // Storing Data for Email // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your Email has been updated !!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('phone'): {
+          this.updateRollback();
+          this.addRollback();
+          this.btn_phone = 'Edit';
+          //
+          // Storing Data for Phone Number // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your Phone Number has been updated !!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('emergencyInfo'): {
+          this.updateRollback();
+          this.addRollback();
+          this.btn_emergencyInfo = 'Edit';
+          //
+          // Storing Data for Emergency Info // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your Emergency Information has been updated !!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('emergencyContact'): {
+          this.updateRollback();
+          this.addRollback();
+          this.btn_emergencyContact = 'Edit';
+          //
+          // Storing Data for Emergency Contact // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your Emergency Contact has been updated !!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
         }
       }
     });
   }
 
+  // Storing newly entered Data From User
   async saveData(formname: string) {
     const loader = await this.loadingCtrl.create({
       duration: 1000
@@ -299,26 +422,85 @@ export class EditProfilePage implements OnInit {
     loader.present();
     loader.onWillDismiss().then(async l => {
       switch (formname) {
-        case ('generalInfo'): {
-          this.generalInfo = true;
-          this.address = true;
-          this.email = true;
-          this.phone = true;
-          this.emergencyInfo = true;
-          this.emergencyContact = true;
-          this.password = true;
-          this.btn_General = 'Edit';
+        case ('address'): {
+          this.updateRollback();
+          this.addRollback();
+          this.add_btn_Address = 'Add';
           //
-          // Storing Data for General Info // CODE
+          // Storing new Data for address // CODE
           const toast = await this.toastCtrl.create({
             showCloseButton: true,
-            message: 'Your Information Updated!!!',
+            message: 'Your new Address has been added!!!',
             duration: 3000,
             position: 'bottom'
           });
 
           toast.present();
-          this.profileChecker = true;
+          break;
+        }
+        case ('email'): {
+          this.updateRollback();
+          this.addRollback();
+          this.add_btn_email = 'Add';
+          //
+          // Storing new Data for Email // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your new Email has been added!!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('phone'): {
+          this.updateRollback();
+          this.addRollback();
+          this.add_btn_phone = 'Add';
+          //
+          // Storing new Data for Phone // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your new Phone has been added!!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('add_emergencyInfo'): {
+          this.updateRollback();
+          this.addRollback();
+          this.add_btn_emergencyInfo = 'Add';
+          //
+          // Storing new Data for Emergency Info // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your new Emergency Information has been added!!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
+        }
+        case ('add_emergencyContact'): {
+          this.updateRollback();
+          this.addRollback();
+          this.add_btn_emergencyContact = 'Add';
+          //
+          // Storing new Data for Emergency Contact // CODE
+          const toast = await this.toastCtrl.create({
+            showCloseButton: true,
+            message: 'Your new Emergency Contact has been added!!!',
+            duration: 3000,
+            position: 'bottom'
+          });
+
+          toast.present();
+          break;
         }
       }
     });
@@ -327,7 +509,8 @@ export class EditProfilePage implements OnInit {
   // Functions for Hideing and Showing tables of forms 
   updateRollback() {
     this.generalInfo = this.address = this.email = this.phone = this.emergencyInfo = this.emergencyContact = this.password = true;
-    this.btn_General = this.btn_address = this.btn_email = this.btn_phone = this.btn_password = this.btn_emergencyInfo = this.btn_emergencyContact = 'Edit';
+    this.btn_General = this.btn_address = this.btn_email = this.btn_phone = this.btn_emergencyInfo = this.btn_emergencyContact = 'Edit';
+    this.btn_password = 'Change Password'
   }
 
   addRollback() {
@@ -335,13 +518,14 @@ export class EditProfilePage implements OnInit {
     this.add_btn_Address = this.add_btn_email = this.add_btn_phone = this.add_btn_emergencyInfo = this.add_btn_emergencyContact = 'Add';
   }
 
+  //Initializing Parameters
   initializingTables() {
     // Edit Initial Activating/Deactivating
     this.btn_General = 'Edit';
     this.btn_address = 'Edit';
     this.btn_email = 'Edit';
     this.btn_phone = 'Edit';
-    this.btn_password = 'Edit';
+    this.btn_password = 'Change Password';
     this.btn_emergencyInfo = 'Edit';
     this.btn_emergencyContact = 'Edit';
     this.generalInfo = true;
@@ -365,6 +549,7 @@ export class EditProfilePage implements OnInit {
     this.add_btn_emergencyContact = 'Add';
   }
 
+  // Opening and Closing Update Forms in View
   async action(formname: string) {
     const loader = await this.loadingCtrl.create({
       duration: 1000
@@ -444,10 +629,23 @@ export class EditProfilePage implements OnInit {
         }
         break;
       }
+      case ('password'): {
+        if (this.btn_password == 'Change Password') {
+          this.updateRollback();
+          this.addRollback();
+          this.password = false;
+          this.btn_password = 'Cancel';
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
     }
   });
 }
 
+  // Opening and Closing Add Forms in View
   async addAction(formname: string) {
     const loader = await this.loadingCtrl.create({
       duration: 1000

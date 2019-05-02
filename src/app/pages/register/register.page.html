@@ -5,145 +5,160 @@
 </ion-header>
 
 <ion-content padding class="animated fadeIn login auth-page">
-    <div class="auth-content" style="padding-bottom: 30px;">
-  
-        <!-- Logo -->
-        <div padding-horizontal text-center class="animated fadeInDown">
-          <div class="logo"></div>
-        </div>
-      
-        <!-- Register form -->
-        <form [formGroup]="onRegisterForm" class="list-form">
-          <ion-item no-padding class="animated fadeInUp">
-            <ion-label position="floating">
-              <ion-icon name="filing" item-start></ion-icon>
-              Matriculation Number *
-            </ion-label>
-            <ion-input color="secondary" type="Number" formControlName="Number"></ion-input>
-          </ion-item>
-          <p ion-text class="text08" *ngIf="onRegisterForm.get('Number').touched && onRegisterForm.get('Number').hasError('required')">
-            <ion-text color="warning">
-              Only Numbers can Enter
-            </ion-text>
-          </p>
-    
-          <ion-item no-padding class="animated fadeInUp">
-            <ion-label position="floating">
-              <ion-icon name="person" item-start></ion-icon>
-              First name *
-            </ion-label>
-            <ion-input color="secondary" type="name" formControlName="firstname"></ion-input>
-          </ion-item>
-          <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('firstname').touched && onRegisterForm.get('firstname').hasError('required')">
-            <ion-text color="warning">
-              You Must Enter Your Frist Name
-            </ion-text>
-            </p>
+  <div class="auth-content" style="padding-bottom: 30px;">
 
-            <ion-item no-padding class="animated fadeInUp">
-              <ion-label position="floating">
-                <ion-icon name="person" item-start></ion-icon>
-                Middle name
-              </ion-label>
-              <ion-input color="secondary" type="name" formControlName="middlename"></ion-input>
-            </ion-item>
-            
-            <ion-item no-padding class="animated fadeInUp">
-              <ion-label position="floating">
-                <ion-icon name="person" item-start></ion-icon>
-                Family name *
-              </ion-label>
-              <ion-input color="secondary" type="name" formControlName="familyname"></ion-input>
-            </ion-item>
-            <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('familyname').touched && onRegisterForm.get('familyname').hasError('required')">
-              <ion-text color="warning">
-                You Must Enter Your Family Name
-              </ion-text>
-              </p>
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+    </div>
 
-              <ion-item no-padding class="animated fadeInUp">
-                <ion-label>
-                    <ion-icon name="body" item-start></ion-icon>
-                    Gender *</ion-label>
-                <ion-select  name="gender" formControlName="gender"  placeholder="Select One">
-                  <ion-select-option value="female">Female</ion-select-option>
-                  <ion-select-option value="male">Male</ion-select-option>
-                </ion-select>
-              </ion-item>
-              <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('gender').touched && onRegisterForm.get('gender').hasError('required')">
-                <ion-text color="warning">
-                  Please Select Your Gender
-                </ion-text>
-                </p>
+    <!-- Register form -->
+    <form [formGroup]="onRegisterForm" class="list-form">
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="filing" item-start></ion-icon>
+          Matriculation Number *
+        </ion-label>
+        <ion-input color="secondary" type="Number" formControlName="Number"></ion-input>
+      </ion-item>
+      <p ion-text class="text08"
+        *ngIf="onRegisterForm.get('Number').touched && onRegisterForm.get('Number').hasError('required')">
+        <ion-text color="warning">
+          Only Numbers can Enter
+        </ion-text>
+      </p>
 
-                <ion-item no-padding class="animated fadeInUp">
-                  <ion-label>
-                      <ion-icon name="calendar" item-start></ion-icon>
-                      Birthday *</ion-label>
-                  <ion-datetime name="birthday" formControlName="birthday" display-format="YYYY-MM-DD" placeholder="Select Date"></ion-datetime>
-                </ion-item>
-                <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('birthday').touched && onRegisterForm.get('birthday').hasError('required')">
-                  <ion-text color="warning">
-                    Please Select Your Birthday
-                  </ion-text>
-                  </p>
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="person" item-start></ion-icon>
+          First name *
+        </ion-label>
+        <ion-input color="secondary" type="name" formControlName="firstname"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('firstname').touched && onRegisterForm.get('firstname').hasError('required')">
+        <ion-text color="warning">
+          You Must Enter Your Frist Name
+        </ion-text>
+      </p>
 
-                  <ion-item no-padding class="animated fadeInUp">
-                    <ion-label position="floating">
-                      <ion-icon name="lock" item-start></ion-icon>
-                      Password *
-                    </ion-label>
-                    <ion-input color="secondary" type="Password" name="password" formControlName="password"></ion-input>
-                  </ion-item>
-                  <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
-                    <ion-text color="warning">
-                      You Must Enter Password
-                    </ion-text>
-                    </p>
-                    <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('minLength')  || onRegisterForm.get('password').hasError('maxLength') || onRegisterForm.get('password').hasError('pattern')">
-                      <ion-text color="warning">
-                        Password Must be at least 6 Characters and at last 30 Characters and must conatin Lower-care Upper-case and Number
-                      </ion-text>
-                      </p>
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="person" item-start></ion-icon>
+          Middle name
+        </ion-label>
+        <ion-input color="secondary" type="name" formControlName="middlename"></ion-input>
+      </ion-item>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="person" item-start></ion-icon>
+          Family name *
+        </ion-label>
+        <ion-input color="secondary" type="name" formControlName="familyname"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('familyname').touched && onRegisterForm.get('familyname').hasError('required')">
+        <ion-text color="warning">
+          You Must Enter Your Family Name
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label>
+          <ion-icon name="body" item-start></ion-icon>
+          Gender *
+        </ion-label>
+        <ion-select name="gender" formControlName="gender" placeholder="Select One">
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="male">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('gender').touched && onRegisterForm.get('gender').hasError('required')">
+        <ion-text color="warning">
+          Please Select Your Gender
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label>
+          <ion-icon name="calendar" item-start></ion-icon>
+          Birthday *
+        </ion-label>
+        <ion-datetime name="birthday" formControlName="birthday" display-format="YYYY-MM-DD" placeholder="Select Date">
+        </ion-datetime>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('birthday').touched && onRegisterForm.get('birthday').hasError('required')">
+        <ion-text color="warning">
+          Please Select Your Birthday
+        </ion-text>
+      </p>
+
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock" item-start></ion-icon>
+          Password *
+        </ion-label>
+        <ion-input color="secondary" type="Password" name="password" formControlName="password"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('required')">
+        <ion-text color="warning">
+          You Must Enter Password
+        </ion-text>
+      </p>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('password').touched && onRegisterForm.get('password').hasError('minLength')  || onRegisterForm.get('password').hasError('maxLength') || onRegisterForm.get('password').hasError('pattern')">
+        <ion-text color="warning">
+          Password Must be at least 6 Characters and at last 30 Characters and must conatin Lower-care Upper-case and
+          Number
+        </ion-text>
+      </p>
 
 
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label position="floating">
-                        <ion-icon name="lock" item-start></ion-icon>
-                        Re-Enter Password *
-                      </ion-label>
-                      <ion-input color="secondary" type="Password" name="confirmpassword" formControlName="confirmpassword"></ion-input>
-                    </ion-item>
-                    <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('confirmpassword').touched && onRegisterForm.get('confirmpassword').hasError('required')">
-                      <ion-text color="warning">
-                        You Must Enter Password Again
-                      </ion-text>
-                      </p>
-                      <p ion-text color="warning" class="text08" *ngIf="onRegisterForm.get('confirmpassword').touched &&  onRegisterForm.hasError('mismatchedPasswords') && onRegisterForm.get('password').valid">
-                        <ion-text color="warning">
-                          Passwords are not Equal
-                        </ion-text>
-                        </p>
+      <ion-item no-padding class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock" item-start></ion-icon>
+          Re-Enter Password *
+        </ion-label>
+        <ion-input color="secondary" type="Password" name="confirmpassword" formControlName="confirmpassword">
+        </ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('confirmpassword').touched && onRegisterForm.get('confirmpassword').hasError('required')">
+        <ion-text color="warning">
+          You Must Enter Password Again
+        </ion-text>
+      </p>
+      <p ion-text color="warning" class="text08"
+        *ngIf="onRegisterForm.get('confirmpassword').touched &&  onRegisterForm.hasError('mismatchedPasswords') && onRegisterForm.get('password').valid">
+        <ion-text color="warning">
+          Passwords are not Equal
+        </ion-text>
+      </p>
 
-        </form>
-    
-        
-          <div>
-            <ion-button icon-left size="medium" expand="full" shape="round" color="secondary" (click)='goToDashboard()' [disabled]="!onRegisterForm.valid" tappable> 
-              <ion-icon name="checkmark-circle"></ion-icon>
-              Sign Up
-            </ion-button>     
-          </div>
-      
-          <!-- Other links -->
-          <div text-center margin-top margin-bottom> 
-            <span (click)="backLogin()" class="paz" tappable>
-              <ion-text color="secondary">
-                <strong>I have an Account</strong>
-              </ion-text>
-            </span>
-          </div>
-    
-      </div>
-  
+    </form>
+
+
+    <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="secondary" (click)='goToDashboard()'
+        [disabled]="!onRegisterForm.valid" tappable>
+        <ion-icon name="checkmark-circle"></ion-icon>
+        Sign Up
+      </ion-button>
+    </div>
+
+    <!-- Other links -->
+    <div text-center margin-top margin-bottom>
+      <span (click)="backLogin()" class="paz" tappable>
+        <ion-text color="secondary">
+          <strong>I have an Account</strong>
+        </ion-text>
+      </span>
+    </div>
+
+  </div>
+
 </ion-content>

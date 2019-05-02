@@ -108,7 +108,7 @@
                     Nationality
                   </ion-label>
                   <ionic-selectable name="nationality" formControlName="nationality" [items]="nationalities"
-                    [canSearch]="true" (onChange)="portChange($event)">
+                    [canSearch]="true" (onChange)="selectChange($event)">
                   </ionic-selectable>
                 </ion-item>
                 <p ion-text color="warning" class="text08"
@@ -151,6 +151,71 @@
                 </p>
                 <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
                   (click)="updateData('generalInfo')" [disabled]="!onUpdateGeneralInfoForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
+          <!-- Password Form For Update -->
+          <ion-list margin-bottom>
+            <ion-list-header>
+              <ion-button icon-left size="medium" shape="round" [color]="password ? 'primary' : 'danger'" text-center
+                tappable (click)="action('password')">
+                {{btn_password}}
+                <ion-icon slot="start" [name]="password ? 'lock' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-center [hidden]="password ? true : false">
+              <form [formGroup]="onChangePasswordForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="lock" item-start></ion-icon>
+                    New Password *
+                  </ion-label>
+                  <ion-input color="secondary" type="Password" name="password" formControlName="password"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onChangePasswordForm.get('password').touched && onChangePasswordForm.get('password').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Password
+                  </ion-text>
+                </p>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onChangePasswordForm.get('password').touched && onChangePasswordForm.get('password').hasError('minLength')  || onChangePasswordForm.get('password').hasError('maxLength') || onChangePasswordForm.get('password').hasError('pattern')">
+                  <ion-text color="warning">
+                    Password Must be at least 6 Characters and at last 30 Characters and must conatin Lower-care
+                    Upper-case and
+                    Number
+                  </ion-text>
+                </p>
+
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="lock" item-start></ion-icon>
+                    Re-Enter New Password *
+                  </ion-label>
+                  <ion-input color="secondary" type="Password" name="confirmpassword" formControlName="confirmpassword">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onChangePasswordForm.get('confirmpassword').touched && onChangePasswordForm.get('confirmpassword').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Password Again
+                  </ion-text>
+                </p>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onChangePasswordForm.get('confirmpassword').touched &&  onChangePasswordForm.hasError('mismatchedPasswords') && onChangePasswordForm.get('password').valid">
+                  <ion-text color="warning">
+                    Passwords are not Equal
+                  </ion-text>
+                </p>
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('password')" [disabled]="!onChangePasswordForm.valid" tappable>
                   <ion-icon name="save"></ion-icon>
                   Save
                 </ion-button>
@@ -220,7 +285,7 @@
                   </ion-label>
                   <ionic-selectable name="country" formControlName="country" [items]="countries"
                     itemValueField="countryName" itemTextField="countryName" [canSearch]="true"
-                    (onChange)="portChange($event)">
+                    (onChange)="selectChange($event)">
                   </ionic-selectable>
                 </ion-item>
                 <p ion-text color="warning" class="text08"
@@ -324,7 +389,7 @@
                   </ion-label>
                   <ionic-selectable name="country" formControlName="country" [items]="countries"
                     itemValueField="countryName" itemTextField="countryName" [canSearch]="true"
-                    (onChange)="portChange($event)">
+                    (onChange)="selectChange($event)">
                   </ionic-selectable>
                 </ion-item>
                 <p ion-text color="warning" class="text08"
@@ -654,7 +719,7 @@
               </ion-button>
             </ion-list-header>
 
-            <div padding text-left [hidden]="emergencyInfo ? false : true"  class="formsdividing">
+            <div padding text-left [hidden]="emergencyInfo ? false : true" class="formsdividing">
               <ion-grid>
                 <ion-row>
                   <ion-col><strong>Asthma</strong></ion-col>
@@ -827,7 +892,7 @@
                     <ion-icon name="phone" item-start></ion-icon>
                     Full Name
                   </ion-label>
-                  <ion-input color="secondary" type="name" formControlName="fullname" >
+                  <ion-input color="secondary" type="name" formControlName="fullname">
                   </ion-input>
                 </ion-item>
                 <p ion-text color="warning" class="text08"
@@ -855,7 +920,7 @@
                     <ion-icon name="phone" item-start></ion-icon>
                     Phone Number
                   </ion-label>
-                  <ion-input color="secondary" type="name" formControlName="phonenumber" >
+                  <ion-input color="secondary" type="name" formControlName="phonenumber">
                   </ion-input>
                 </ion-item>
                 <p ion-text color="warning" class="text08"
