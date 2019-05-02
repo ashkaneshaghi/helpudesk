@@ -44,7 +44,7 @@ export class EditProfilePage implements OnInit {
   private add_address: boolean;
   private add_email: boolean;
   private add_phone: boolean;
-  private add_emegencyInfo: boolean;
+  private add_emergencyInfo: boolean;
   private add_emergencyContact: boolean;
 
   // Edit Forms Parameters for Activating/Deactivating
@@ -60,6 +60,14 @@ export class EditProfilePage implements OnInit {
   private onUpdateGeneralInfoForm: FormGroup;
   private onUpdateAddressForm: FormGroup;
   private onAddAddressForm: FormGroup;
+  private onAddEmailForm: FormGroup;
+  private onUpdateEmailForm: FormGroup;
+  private onUpdatePhoneForm: FormGroup;
+  private onAddPhoneForm: FormGroup;
+  private onAddEmergencyInfoForm: FormGroup;
+  private onUpdateEmergencyInfoForm: FormGroup;
+  private onUpdateEmergencyContactForm: FormGroup
+  private onAddEmergencyContactForm: FormGroup
 
   constructor(
     public navCtrl: NavController,
@@ -74,11 +82,15 @@ export class EditProfilePage implements OnInit {
     // Reading Lists From Local Files - Country
     this.http.get('../../assets/lists/lists.json').subscribe(res => {
       this.countries = res['countries'];
-      this.countries[0].open = true;
       this.nationalities = res['nationalites'];
       this.addressType = res['addresstype'];
       this.phoneType = res['phonetype'];
       this.emailType = res['emailtype'];
+      this.countries[0].open = true;
+      this.nationalities[0].open = true;
+      this.addressType[0].open = true;
+      this.phoneType[0].open = true;
+      this.emailType[0].open = true;
     })
 
 
@@ -146,6 +158,81 @@ export class EditProfilePage implements OnInit {
 
     });
 
+    this.onUpdateEmailForm = this.formBuilder.group({
+      'email': [!empty, Validators.compose([
+        Validators.required
+      ])],
+      'emailtype': ['', Validators.compose([
+        Validators.required
+      ])],
+
+    });
+  
+    this.onAddEmailForm = this.formBuilder.group({
+      'email': ['', Validators.compose([
+        Validators.required
+      ])],
+      'emailtype': ['', Validators.compose([
+        Validators.required
+      ])],
+
+    });
+
+    this.onUpdatePhoneForm = this.formBuilder.group({
+      'phone': [!empty, Validators.compose([
+        Validators.required
+      ])],
+      'phonetype': ['', Validators.compose([
+        Validators.required
+      ])],
+
+    });
+  
+    this.onAddPhoneForm = this.formBuilder.group({
+      'phone': ['', Validators.compose([
+        Validators.required
+      ])],
+      'phonetype': ['', Validators.compose([
+        Validators.required
+      ])],
+
+    });
+    
+    this.onAddEmergencyInfoForm = this.formBuilder.group({
+      'diseasename': ['', Validators.compose([
+        Validators.required
+      ])],
+    });
+
+    this.onUpdateEmergencyInfoForm = this.formBuilder.group({
+      'diseasename': [!empty, Validators.compose([
+        Validators.required
+      ])],
+    });
+    
+    this.onUpdateEmergencyContactForm = this.formBuilder.group({
+      'fullname': [!empty, Validators.compose([
+        Validators.required
+      ])],
+      'relation': [!empty, Validators.compose([
+        Validators.required
+      ])],
+      'phonenumber': [!empty, Validators.compose([
+        Validators.required
+      ])],
+    });
+    
+    this.onAddEmergencyContactForm = this.formBuilder.group({
+      'fullname': ['', Validators.compose([
+        Validators.required
+      ])],
+      'relation': ['', Validators.compose([
+        Validators.required
+      ])],
+      'phonenumber': ['', Validators.compose([
+        Validators.required
+      ])],
+    });
 
   }
 
@@ -244,7 +331,7 @@ export class EditProfilePage implements OnInit {
   }
 
   addRollback() {
-    this.add_address = this.add_phone = this.add_email = this.add_emergencyContact = this.add_emegencyInfo = true;
+    this.add_address = this.add_phone = this.add_email = this.add_emergencyContact = this.add_emergencyInfo = true;
     this.add_btn_Address = this.add_btn_email = this.add_btn_phone = this.add_btn_emergencyInfo = this.add_btn_emergencyContact = 'Add';
   }
 
@@ -269,7 +356,7 @@ export class EditProfilePage implements OnInit {
     this.add_address = true;
     this.add_email = true;
     this.add_phone = true;
-    this.add_emegencyInfo = true;
+    this.add_emergencyInfo = true;
     this.add_emergencyContact = true;
     this.add_btn_Address = 'Add';
     this.add_btn_email = 'Add';
@@ -278,8 +365,13 @@ export class EditProfilePage implements OnInit {
     this.add_btn_emergencyContact = 'Add';
   }
 
-  action(formname: string) {
-    switch (formname) {
+  async action(formname: string) {
+    const loader = await this.loadingCtrl.create({
+      duration: 1000
+    });
+    loader.present();
+    loader.onWillDismiss().then(() => {
+  switch (formname) {
       case ('generalInfo'): {
         if (this.btn_General == 'Edit') {
           this.addRollback();
@@ -288,6 +380,7 @@ export class EditProfilePage implements OnInit {
           this.btn_General = 'Cancel';
         } else {
           this.updateRollback();
+          this.addRollback();
         }
         break;
       }
@@ -299,14 +392,68 @@ export class EditProfilePage implements OnInit {
           this.btn_address = 'Cancel';
         } else {
           this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('email'): {
+        if (this.btn_email == 'Edit') {
+          this.updateRollback();
+          this.addRollback();
+          this.email = false;
+          this.btn_email = 'Cancel';
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('phone'): {
+        if (this.btn_phone == 'Edit') {
+          this.updateRollback();
+          this.addRollback();
+          this.phone = false;
+          this.btn_phone = 'Cancel';
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('emergencyInfo'): {
+        if (this.btn_emergencyInfo == 'Edit') {
+          this.updateRollback();
+          this.addRollback();
+          this.emergencyInfo = false;
+          this.btn_emergencyInfo = 'Cancel';
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('emergencyContact'): {
+        if (this.btn_emergencyContact == 'Edit') {
+          this.updateRollback();
+          this.addRollback();
+          this.emergencyContact = false;
+          this.btn_emergencyContact = 'Cancel';
+        } else {
+          this.updateRollback();
+          this.addRollback();
         }
         break;
       }
     }
+  });
+}
 
-  }
-
-  addAction(formname: string) {
+  async addAction(formname: string) {
+    const loader = await this.loadingCtrl.create({
+      duration: 1000
+    });
+    loader.present();
+    loader.onWillDismiss().then(() => {
     switch (formname) {
       case ('add_address'): {
         if (this.add_btn_Address == 'Add') {
@@ -321,7 +468,59 @@ export class EditProfilePage implements OnInit {
         }
         break;
       }
-    }
-  }
+      case ('add_email'): {
+        if (this.add_btn_email == 'Add') {
+          this.updateRollback();
+          this.addRollback();
+          this.add_email = false;
+          this.add_btn_email = 'Cancel'
 
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('add_phone'): {
+        if (this.add_btn_phone == 'Add') {
+          this.updateRollback();
+          this.addRollback();
+          this.add_phone = false;
+          this.add_btn_phone = 'Cancel'
+
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('add_emergencyInfo'): {
+        if (this.add_btn_emergencyInfo == 'Add') {
+          this.updateRollback();
+          this.addRollback();
+          this.add_emergencyInfo = false;
+          this.add_btn_emergencyInfo = 'Cancel'
+
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+      case ('add_emergencyContact'): {
+        if (this.add_btn_emergencyContact == 'Add') {
+          this.updateRollback();
+          this.addRollback();
+          this.add_emergencyContact = false;
+          this.add_btn_emergencyContact = 'Cancel'
+
+        } else {
+          this.updateRollback();
+          this.addRollback();
+        }
+        break;
+      }
+    }
+  });
+  }
 }

@@ -25,381 +25,857 @@
     <ion-grid fixed no-padding>
       <ion-row>
         <ion-col size="12" padding>
-            <!-- General Information Form for Update -->
-            <ion-list margin-bottom>
-                <ion-list-header color="light">
-                  <ion-label class="fw700">Personal Information</ion-label>
-                  <ion-button icon-left size="small" shape="round" [color]="generalInfo ? 'secondary' : 'danger'"
-                    text-center tappable (click)="action('generalInfo')">
-                    {{btn_General}}
-                    <ion-icon slot="start" [name]="generalInfo ? 'create' : 'arrow-up'"></ion-icon>
-                  </ion-button>
-                </ion-list-header>
-    
-                <div padding text-left [hidden]="generalInfo ? false : true">
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col>First Name :</ion-col>
-                      <ion-col><strong>FIRST NAME</strong></ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>Middle Name :</ion-col>
-                      <ion-col><strong>MIDDLE NAME</strong></ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>Family Name :</ion-col>
-                      <ion-col><strong>FAMILY NAME</strong></ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>Nationality :</ion-col>
-                      <ion-col><strong>NATIONALITY</strong></ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>Birth Date :</ion-col>
-                      <ion-col><strong>01-01-1990</strong></ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>Gender :</ion-col>
-                      <ion-col><strong>MALE</strong></ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </div>
-                <div padding text-center [hidden]="generalInfo ? true : false">
-                  <form [formGroup]="onUpdateGeneralInfoForm" class="list-form">
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label position="floating">
-                        <ion-icon name="person" item-start></ion-icon>
-                        First name
-                      </ion-label>
-                      <ion-input color="secondary" type="name" formControlName="firstname" value="FIRST NAME"></ion-input>
-                    </ion-item>
-                    <p ion-text color="warning" class="text08"
-                      *ngIf="onUpdateGeneralInfoForm.get('firstname').touched && onUpdateGeneralInfoForm.get('firstname').hasError('required')">
-                      <ion-text color="warning">
-                        You Must Enter Your Frist Name
-                      </ion-text>
-                    </p>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label position="floating">
-                        <ion-icon name="person" item-start></ion-icon>
-                        Middle name
-                      </ion-label>
-                      <ion-input color="secondary" type="name" value="MIDDLE NAME"></ion-input>
-                    </ion-item>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label position="floating">
-                        <ion-icon name="person" item-start></ion-icon>
-                        Family name
-                      </ion-label>
-                      <ion-input color="secondary" type="name" formControlName="familyname" value="FAMILY NAME"></ion-input>
-                    </ion-item>
-                    <p ion-text color="warning" class="text08"
-                      *ngIf="onUpdateGeneralInfoForm.get('familyname').touched && onUpdateGeneralInfoForm.get('familyname').hasError('required')">
-                      <ion-text color="warning">
-                        You Must Enter Your Family Name
-                      </ion-text>
-                    </p>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label>
-                          <ion-icon name="globe" item-start></ion-icon>
-                          Nationality</ion-label>
-                          <ionic-selectable name="nationality" formControlName="nationality"
-                          [items]="nationalities"
-                          [canSearch]="true"
-                          (onChange)="portChange($event)">
-                        </ionic-selectable>
-                    </ion-item>
-                    <p ion-text color="warning" class="text08"
-                      *ngIf="onUpdateGeneralInfoForm.get('nationality').touched && onUpdateGeneralInfoForm.get('nationality').hasError('required')">
-                      <ion-text color="warning">
-                        Please Select Your Nationality
-                      </ion-text>
-                    </p>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label>
-                          <ion-icon name="calendar" item-start></ion-icon>
-                          Birthday *</ion-label>
-                      <ion-datetime name="birthday" formControlName="birthday" display-format="YYYY-MM-DD"
-                        value="1990-01-01" placeholder="Select Date"></ion-datetime>
-                    </ion-item>
-                    <p ion-text color="warning" class="text08"
-                      *ngIf="onUpdateGeneralInfoForm.get('birthday').touched && onUpdateGeneralInfoForm.get('birthday').hasError('required')">
-                      <ion-text color="warning">
-                        Please Select Your Birthday
-                      </ion-text>
-                    </p>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                      <ion-label>
-                          <ion-icon name="body" item-start></ion-icon>
-                          Gender *</ion-label>
-                      <ion-select name="gender" formControlName="gender" placeholder="Select One">
-                        <ion-select-option value="female" [selected]="true">Female</ion-select-option>
-                        <ion-select-option value="male">Male</ion-select-option>
-                      </ion-select>
-                    </ion-item>
-                    <p ion-text color="warning" class="text08"
-                      *ngIf="onUpdateGeneralInfoForm.get('gender').touched && onUpdateGeneralInfoForm.get('gender').hasError('required')">
-                      <ion-text color="warning">
-                        Please Select Your Gender
-                      </ion-text>
-                    </p>
-                    <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
-                      (click)="updateData('generalInfo')" [disabled]="!onUpdateGeneralInfoForm.valid" tappable>
-                      <ion-icon name="save"></ion-icon>
-                      Save
+          <!-- General Information Form for Update -->
+          <ion-list margin-bottom>
+            <ion-list-header color="light">
+              <ion-label class="fw700">Personal Information</ion-label>
+              <ion-button icon-left size="small" shape="round" [color]="generalInfo ? 'secondary' : 'danger'"
+                text-center tappable (click)="action('generalInfo')">
+                {{btn_General}}
+                <ion-icon slot="start" [name]="generalInfo ? 'create' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-left [hidden]="generalInfo ? false : true">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>First Name :</ion-col>
+                  <ion-col><strong>FIRST NAME</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>Middle Name :</ion-col>
+                  <ion-col><strong>MIDDLE NAME</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>Family Name :</ion-col>
+                  <ion-col><strong>FAMILY NAME</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>Nationality :</ion-col>
+                  <ion-col><strong>NATIONALITY</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>Birth Date :</ion-col>
+                  <ion-col><strong>01-01-1990</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>Gender :</ion-col>
+                  <ion-col><strong>MALE</strong></ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div padding text-center [hidden]="generalInfo ? true : false">
+              <form [formGroup]="onUpdateGeneralInfoForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    First name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="firstname" value="FIRST NAME"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateGeneralInfoForm.get('firstname').touched && onUpdateGeneralInfoForm.get('firstname').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Frist Name
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    Middle name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" value="MIDDLE NAME"></ion-input>
+                </ion-item>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    Family name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="familyname" value="FAMILY NAME"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateGeneralInfoForm.get('familyname').touched && onUpdateGeneralInfoForm.get('familyname').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Family Name
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label>
+                    <ion-icon name="globe" item-start></ion-icon>
+                    Nationality
+                  </ion-label>
+                  <ionic-selectable name="nationality" formControlName="nationality" [items]="nationalities"
+                    [canSearch]="true" (onChange)="portChange($event)">
+                  </ionic-selectable>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateGeneralInfoForm.get('nationality').touched && onUpdateGeneralInfoForm.get('nationality').hasError('required')">
+                  <ion-text color="warning">
+                    Please Select Your Nationality
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label>
+                    <ion-icon name="calendar" item-start></ion-icon>
+                    Birthday *
+                  </ion-label>
+                  <ion-datetime name="birthday" formControlName="birthday" display-format="YYYY-MM-DD"
+                    value="1990-01-01" placeholder="Select Date"></ion-datetime>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateGeneralInfoForm.get('birthday').touched && onUpdateGeneralInfoForm.get('birthday').hasError('required')">
+                  <ion-text color="warning">
+                    Please Select Your Birthday
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label>
+                    <ion-icon name="body" item-start></ion-icon>
+                    Gender *
+                  </ion-label>
+                  <ion-select name="gender" formControlName="gender" placeholder="Select One">
+                    <ion-select-option value="female" [selected]="true">Female</ion-select-option>
+                    <ion-select-option value="male">Male</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateGeneralInfoForm.get('gender').touched && onUpdateGeneralInfoForm.get('gender').hasError('required')">
+                  <ion-text color="warning">
+                    Please Select Your Gender
+                  </ion-text>
+                </p>
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('generalInfo')" [disabled]="!onUpdateGeneralInfoForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
+          <!-- Address Form For Update -->
+          <ion-list margin-bottom>
+            <ion-list-header color="light">
+              <ion-label class="fw700">Address</ion-label>
+              <ion-button icon-left size="small" shape="round" [color]="add_address ? 'primary' : 'danger'" text-center
+                tappable (click)="addAction('add_address')">
+                {{add_btn_Address}}
+                <ion-icon slot="start" [name]="add_address ? 'add' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-left [hidden]="address ? false : true" class="formsdividing">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4"><strong color="secondary">HOME</strong></ion-col>
+                  <ion-col><strong>Germany, Baden, Heidelberg, Maria-Probst-Strasse 3, 69123</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col text-right>
+                    <ion-button icon-left size="small" shape="round" [color]="address ? 'secondary' : 'danger'"
+                      text-center tappable (click)="action('address')">
+                      {{btn_address}}
+                      <ion-icon slot="start" [name]="address ? 'create' : 'arrow-up'"></ion-icon>
                     </ion-button>
-    
-                  </form>
-                </div>
-              </ion-list>
-
-              <!-- Address Form For Update -->
-              <ion-list margin-bottom>
-                  <ion-list-header color="light">
-                    <ion-label class="fw700">Address</ion-label>
-                    <ion-button icon-left size="small" shape="round" [color]="add_address ? 'primary' : 'danger'"
-                    text-center tappable (click)="addAction('add_address')">
-                    {{add_btn_Address}}
-                    <ion-icon slot="start" [name]="add_address ? 'add' : 'arrow-up'"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div padding text-center [hidden]="address ? true : false">
+              <form [formGroup]="onUpdateAddressForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-button slot="end" icon-left size="small" shape="round" [color]="address ? 'secondary' : 'danger'"
+                    text-center tappable (click)="action('address')">
+                    {{btn_address}}
+                    <ion-icon slot="start" [name]="address ? 'create' : 'arrow-up'"></ion-icon>
                   </ion-button>
-                  </ion-list-header>
-      
-                  <div padding text-left [hidden]="address ? false : true">
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col size="3"><strong color="secondary">HOME</strong></ion-col>
-                        <ion-col><strong>Germany, Baden, Heidelberg, Maria-Probst-Strasse 3, 69123</strong></ion-col>
-                        <ion-col text-right>
-                            <ion-button icon-left size="small" shape="round" [color]="address ? 'secondary' : 'danger'"
-                            text-center tappable (click)="action('address')">
-                            {{btn_address}}
-                            <ion-icon slot="start" [name]="address ? 'create' : 'arrow-up'"></ion-icon>
-                          </ion-button>
-                              </ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </div>
-                  <div padding text-center [hidden]="address ? true : false">
-                    <form [formGroup]="onUpdateAddressForm" class="list-form">
-                        <ion-item no-padding class="animated fadeInUp">
-                            <ion-button slot="end" icon-left size="small" shape="round" [color]="address ? 'secondary' : 'danger'"
-                            text-center tappable (click)="action('address')">
-                            {{btn_address}}
-                            <ion-icon slot="start" [name]="address ? 'create' : 'arrow-up'"></ion-icon>
-                          </ion-button>
-                        </ion-item>
-                            <ion-item no-padding class="animated fadeInUp">
-                        <ion-label position="floating">
-                          <ion-icon name="flag" item-start></ion-icon>
-                          Address Type
-                        </ion-label>
-                        <ion-select name="addresstype" formControlName="addresstype" placeholder="Select One">
-                          <ion-select-option *ngFor="let addtype of addressType" [value]="addtype">{{addtype}}</ion-select-option>
-                        </ion-select>
-                        </ion-item>
-                                    <p ion-text color="warning" class="text08"
-                        *ngIf="onUpdateAddressForm.get('addresstype').touched && onUpdateAddressForm.get('addresstype').hasError('required')">
-                        <ion-text color="warning">
-                          You Must Enter Your Address type
-                        </ion-text>
-                      </p>
-      
-                      <ion-item no-padding class="animated fadeInUp">
-                          <ion-label>
-                              <ion-icon name="globe" item-start></ion-icon>
-                              Country *</ion-label>
-                              <ionic-selectable name="country" formControlName="country"
-                              [items]="countries"
-                              itemValueField="countryName"
-                              itemTextField="countryName"
-                              [canSearch]="true"
-                              (onChange)="portChange($event)">
-                            </ionic-selectable>
-                            </ion-item>
-                                <p ion-text color="warning" class="text08"
-                      *ngIf="onUpdateAddressForm.get('country').touched && onUpdateAddressForm.get('country').hasError('required')">
-                      <ion-text color="warning">
-                        You Must Enter Your Country
-                      </ion-text>
-                    </p>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                          <ion-label position="floating">
-                            <ion-icon name="person" item-start></ion-icon>
-                            State
-                          </ion-label>
-                          <ion-input color="secondary" type="name" value="Baden"></ion-input>
-                        </ion-item>
+                </ion-item>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="flag" item-start></ion-icon>
+                    Address Type
+                  </ion-label>
+                  <ion-select name="addresstype" formControlName="addresstype" placeholder="Select One">
+                    <ion-select-option *ngFor="let addtype of addressType" [value]="addtype">{{addtype}}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateAddressForm.get('addresstype').touched && onUpdateAddressForm.get('addresstype').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Address type
+                  </ion-text>
+                </p>
 
-                        <ion-item no-padding class="animated fadeInUp">
-                            <ion-label position="floating">
-                              <ion-icon name="person" item-start></ion-icon>
-                              City *
-                            </ion-label>
-                            <ion-input color="secondary" type="name" formControlName="city" value="Heidelberg"></ion-input>
-                          </ion-item>
-                          <p ion-text color="warning" class="text08"
-                            *ngIf="onUpdateAddressForm.get('city').touched && onUpdateAddressForm.get('city').hasError('required')">
-                            <ion-text color="warning">
-                              You Must Enter Your City
-                            </ion-text>
-                          </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label>
+                    <ion-icon name="globe" item-start></ion-icon>
+                    Country *
+                  </ion-label>
+                  <ionic-selectable name="country" formControlName="country" [items]="countries"
+                    itemValueField="countryName" itemTextField="countryName" [canSearch]="true"
+                    (onChange)="portChange($event)">
+                  </ionic-selectable>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateAddressForm.get('country').touched && onUpdateAddressForm.get('country').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Country
+                  </ion-text>
+                </p>
 
-                          <ion-item no-padding class="animated fadeInUp">
-                              <ion-label position="floating">
-                                <ion-icon name="map" item-start></ion-icon>
-                                Street 1 *
-                              </ion-label>
-                              <ion-input color="secondary" type="name" name="street1" formControlName="street1" value="Maria-Probst-Strasse 3"></ion-input>
-                            </ion-item>
-                            <p ion-text color="warning" class="text08"
-                              *ngIf="onUpdateAddressForm.get('street1').touched && onUpdateAddressForm.get('street1').hasError('required')">
-                              <ion-text color="warning">
-                                You Must Enter Your Street
-                              </ion-text>
-                            </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    State
+                  </ion-label>
+                  <ion-input color="secondary" type="name" value="Baden"></ion-input>
+                </ion-item>
 
-                            <ion-item no-padding class="animated fadeInUp">
-                                <ion-label position="floating">
-                                  <ion-icon name="map" item-start></ion-icon>
-                                  Street 2
-                                </ion-label>
-                                <ion-input color="secondary" type="name" name="street2" value=""></ion-input>
-                              </ion-item>
-  
-                              <ion-item no-padding class="animated fadeInUp">
-                                  <ion-label position="floating">
-                                    <ion-icon name="person" item-start></ion-icon>
-                                    Postal Code *
-                                  </ion-label>
-                                  <ion-input color="secondary" type="number" formControlName="postcode" value="69123"></ion-input>
-                                </ion-item>
-                                <p ion-text color="warning" class="text08"
-                                  *ngIf="onUpdateAddressForm.get('postcode').touched && onUpdateAddressForm.get('postcode').hasError('required')">
-                                  <ion-text color="warning">
-                                    You Must Enter Your Postal Code
-                                  </ion-text>
-                                </p>
-    
-                      <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
-                        (click)="updateData('address')" [disabled]="!onUpdateAddressForm.valid" tappable>
-                        <ion-icon name="save"></ion-icon>
-                        Save
-                      </ion-button>
-      
-                    </form>
-                  </div>
-                  <!-- Add New Address Form-->
-                  <div padding text-center [hidden]="add_address ? true : false">
-                    <form [formGroup]="onAddAddressForm" class="list-form">
-                            <ion-item no-padding class="animated fadeInUp">
-                        <ion-label position="floating">
-                          <ion-icon name="flag" item-start></ion-icon>
-                          Address Type
-                        </ion-label>
-                        <ion-select name="addresstype" formControlName="addresstype" placeholder="Select One">
-                          <ion-select-option *ngFor="let addtype of addressType" [value]="addtype">{{addtype}}</ion-select-option>
-                        </ion-select>
-                        </ion-item>
-                                    <p ion-text color="warning" class="text08"
-                        *ngIf="onAddAddressForm.get('addresstype').touched && onAddAddressForm.get('addresstype').hasError('required')">
-                        <ion-text color="warning">
-                          You Must Enter Your Address type
-                        </ion-text>
-                      </p>
-      
-                      <ion-item no-padding class="animated fadeInUp">
-                          <ion-label>
-                              <ion-icon name="globe" item-start></ion-icon>
-                              Country *</ion-label>
-                              <ionic-selectable name="country" formControlName="country"
-                              [items]="countries"
-                              itemValueField="countryName"
-                              itemTextField="countryName"
-                              [canSearch]="true"
-                              (onChange)="portChange($event)">
-                            </ionic-selectable>
-                            </ion-item>
-                                <p ion-text color="warning" class="text08"
-                      *ngIf="onAddAddressForm.get('country').touched && onAddAddressForm.get('country').hasError('required')">
-                      <ion-text color="warning">
-                        You Must Enter Your Country
-                      </ion-text>
-                    </p>
-    
-                    <ion-item no-padding class="animated fadeInUp">
-                          <ion-label position="floating">
-                            <ion-icon name="person" item-start></ion-icon>
-                            State
-                          </ion-label>
-                          <ion-input color="secondary" type="name" ></ion-input>
-                        </ion-item>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    City *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="city" value="Heidelberg"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateAddressForm.get('city').touched && onUpdateAddressForm.get('city').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your City
+                  </ion-text>
+                </p>
 
-                        <ion-item no-padding class="animated fadeInUp">
-                            <ion-label position="floating">
-                              <ion-icon name="person" item-start></ion-icon>
-                              City *
-                            </ion-label>
-                            <ion-input color="secondary" type="name" formControlName="city" ></ion-input>
-                          </ion-item>
-                          <p ion-text color="warning" class="text08"
-                            *ngIf="onAddAddressForm.get('city').touched && onAddAddressForm.get('city').hasError('required')">
-                            <ion-text color="warning">
-                              You Must Enter Your City
-                            </ion-text>
-                          </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="map" item-start></ion-icon>
+                    Street 1 *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" name="street1" formControlName="street1"
+                    value="Maria-Probst-Strasse 3"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateAddressForm.get('street1').touched && onUpdateAddressForm.get('street1').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Street
+                  </ion-text>
+                </p>
 
-                          <ion-item no-padding class="animated fadeInUp">
-                              <ion-label position="floating">
-                                <ion-icon name="map" item-start></ion-icon>
-                                Street 1 *
-                              </ion-label>
-                              <ion-input color="secondary" type="name" name="street1" formControlName="street1" ></ion-input>
-                            </ion-item>
-                            <p ion-text color="warning" class="text08"
-                              *ngIf="onAddAddressForm.get('street1').touched && onAddAddressForm.get('street1').hasError('required')">
-                              <ion-text color="warning">
-                                You Must Enter Your Street
-                              </ion-text>
-                            </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="map" item-start></ion-icon>
+                    Street 2
+                  </ion-label>
+                  <ion-input color="secondary" type="name" name="street2" value=""></ion-input>
+                </ion-item>
 
-                            <ion-item no-padding class="animated fadeInUp">
-                                <ion-label position="floating">
-                                  <ion-icon name="map" item-start></ion-icon>
-                                  Street 2
-                                </ion-label>
-                                <ion-input color="secondary" type="name" name="street2" value=""></ion-input>
-                              </ion-item>
-  
-                              <ion-item no-padding class="animated fadeInUp">
-                                  <ion-label position="floating">
-                                    <ion-icon name="person" item-start></ion-icon>
-                                    Postal Code *
-                                  </ion-label>
-                                  <ion-input color="secondary" type="number" formControlName="postcode" ></ion-input>
-                                </ion-item>
-                                <p ion-text color="warning" class="text08"
-                                  *ngIf="onAddAddressForm.get('postcode').touched && onAddAddressForm.get('postcode').hasError('required')">
-                                  <ion-text color="warning">
-                                    You Must Enter Your Postal Code
-                                  </ion-text>
-                                </p>
-    
-                      <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
-                        (click)="saveData('address')" [disabled]="!onAddAddressForm.valid" tappable>
-                        <ion-icon name="save"></ion-icon>
-                        Save
-                      </ion-button>
-      
-                    </form>
-                  </div>
-                </ion-list>
-          
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    Postal Code *
+                  </ion-label>
+                  <ion-input color="secondary" type="number" formControlName="postcode" value="69123"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateAddressForm.get('postcode').touched && onUpdateAddressForm.get('postcode').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Postal Code
+                  </ion-text>
+                </p>
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('address')" [disabled]="!onUpdateAddressForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+            <!-- Add New Address Form-->
+            <div padding text-center [hidden]="add_address ? true : false">
+              <form [formGroup]="onAddAddressForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="flag" item-start></ion-icon>
+                    Address Type
+                  </ion-label>
+                  <ion-select name="addresstype" formControlName="addresstype" placeholder="Select One">
+                    <ion-select-option *ngFor="let addtype of addressType" [value]="addtype">{{addtype}}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddAddressForm.get('addresstype').touched && onAddAddressForm.get('addresstype').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Address type
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label>
+                    <ion-icon name="globe" item-start></ion-icon>
+                    Country *
+                  </ion-label>
+                  <ionic-selectable name="country" formControlName="country" [items]="countries"
+                    itemValueField="countryName" itemTextField="countryName" [canSearch]="true"
+                    (onChange)="portChange($event)">
+                  </ionic-selectable>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddAddressForm.get('country').touched && onAddAddressForm.get('country').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Country
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    State
+                  </ion-label>
+                  <ion-input color="secondary" type="name"></ion-input>
+                </ion-item>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    City *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="city"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddAddressForm.get('city').touched && onAddAddressForm.get('city').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your City
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="map" item-start></ion-icon>
+                    Street 1 *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" name="street1" formControlName="street1"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddAddressForm.get('street1').touched && onAddAddressForm.get('street1').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Street
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="map" item-start></ion-icon>
+                    Street 2
+                  </ion-label>
+                  <ion-input color="secondary" type="name" name="street2" value=""></ion-input>
+                </ion-item>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="person" item-start></ion-icon>
+                    Postal Code *
+                  </ion-label>
+                  <ion-input color="secondary" type="number" formControlName="postcode"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddAddressForm.get('postcode').touched && onAddAddressForm.get('postcode').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Postal Code
+                  </ion-text>
+                </p>
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="saveData('address')" [disabled]="!onAddAddressForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
+          <!-- Email Form For Update -->
+          <ion-list margin-bottom>
+            <ion-list-header color="light">
+              <ion-label class="fw700">Email</ion-label>
+              <ion-button icon-left size="small" shape="round" [color]="add_email ? 'primary' : 'danger'" text-center
+                tappable (click)="addAction('add_email')">
+                {{add_btn_email}}
+                <ion-icon slot="start" [name]="add_email ? 'add' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-left [hidden]="email ? false : true" class="formsdividing">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4"><strong color="secondary">Personal</strong></ion-col>
+                  <ion-col><strong>example@example.com</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col text-right>
+                    <ion-button icon-left size="small" shape="round" [color]="email ? 'secondary' : 'danger'"
+                      text-center tappable (click)="action('email')">
+                      {{btn_email}}
+                      <ion-icon slot="start" [name]="email ? 'create' : 'arrow-up'"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div padding text-center [hidden]="email ? true : false">
+              <form [formGroup]="onUpdateEmailForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-button slot="end" icon-left size="small" shape="round" [color]="email ? 'secondary' : 'danger'"
+                    text-center tappable (click)="action('email')">
+                    {{btn_email}}
+                    <ion-icon slot="start" [name]="email ? 'create' : 'arrow-up'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="flag" item-start></ion-icon>
+                    Email Type
+                  </ion-label>
+                  <ion-select name="emailtype" formControlName="emailtype" placeholder="Select One">
+                    <ion-select-option *ngFor="let emtype of emailType" [value]="emtype">{{emtype}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateEmailForm.get('emailtype').touched && onUpdateEmailForm.get('emailtype').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Email type
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="at" item-start></ion-icon>
+                    Email *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="email" value="Example@Example.com">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateEmailForm.get('email').touched && onUpdateEmailForm.get('email').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Email
+                  </ion-text>
+                </p>
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('email')" [disabled]="!onUpdateEmailForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+            <!-- Add New Email Form-->
+            <div padding text-center [hidden]="add_email ? true : false">
+              <form [formGroup]="onAddEmailForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="flag" item-start></ion-icon>
+                    Email Type
+                  </ion-label>
+                  <ion-select name="emailtype" formControlName="emailtype" placeholder="Select One">
+                    <ion-select-option *ngFor="let emtype of emailType" [value]="emtype">{{emtype}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddEmailForm.get('emailtype').touched && onAddEmailForm.get('emailtype').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Email type
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="at" item-start></ion-icon>
+                    Email *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="email"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddEmailForm.get('email').touched && onAddEmailForm.get('email').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Email
+                  </ion-text>
+                </p>
+
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="saveData('email')" [disabled]="!onAddAddressForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
+          <!-- Phone Form For Update -->
+          <ion-list margin-bottom>
+            <ion-list-header color="light">
+              <ion-label class="fw700">Phone</ion-label>
+              <ion-button icon-left size="small" shape="round" [color]="add_phone ? 'primary' : 'danger'" text-center
+                tappable (click)="addAction('add_phone')">
+                {{add_btn_phone}}
+                <ion-icon slot="start" [name]="add_phone ? 'add' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-left [hidden]="phone ? false : true" class="formsdividing">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="4"><strong color="secondary">Personal</strong></ion-col>
+                  <ion-col><strong>+491111111111</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col text-right>
+                    <ion-button icon-left size="small" shape="round" [color]="phone ? 'secondary' : 'danger'"
+                      text-center tappable (click)="action('phone')">
+                      {{btn_phone}}
+                      <ion-icon slot="start" [name]="phone ? 'create' : 'arrow-up'"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div padding text-center [hidden]="phone ? true : false">
+              <form [formGroup]="onUpdatePhoneForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-button slot="end" icon-left size="small" shape="round" [color]="phone ? 'secondary' : 'danger'"
+                    text-center tappable (click)="action('phone')">
+                    {{btn_phone}}
+                    <ion-icon slot="start" [name]="phone ? 'create' : 'arrow-up'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="flag" item-start></ion-icon>
+                    Phone Type
+                  </ion-label>
+                  <ion-select name="phonetype" formControlName="phonetype" placeholder="Select One">
+                    <ion-select-option *ngFor="let phntype of emailType" [value]="phntype">{{phntype}}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdatePhoneForm.get('phonetype').touched && onUpdatePhoneForm.get('phonetype').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Phone type
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Phone *
+                  </ion-label>
+                  <ion-input color="secondary" type="phone" formControlName="phone" value="+491111111111">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdatePhoneForm.get('phone').touched && onUpdatePhoneForm.get('email').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Phone Number
+                  </ion-text>
+                </p>
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('phone')" [disabled]="!onUpdatePhoneForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+            <!-- Add New Phone Form-->
+            <div padding text-center [hidden]="add_phone ? true : false">
+              <form [formGroup]="onAddPhoneForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="flag" item-start></ion-icon>
+                    Phone Type
+                  </ion-label>
+                  <ion-select name="phonetype" formControlName="phonetype" placeholder="Select One">
+                    <ion-select-option *ngFor="let emtype of emailType" [value]="emtype">{{emtype}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddPhoneForm.get('phonetype').touched && onAddPhoneForm.get('phonetype').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Phone type
+                  </ion-text>
+                </p>
+
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Phone *
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="phone"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddPhoneForm.get('phone').touched && onAddPhoneForm.get('phone').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Your Phone Number
+                  </ion-text>
+                </p>
+
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="saveData('phone')" [disabled]="!onAddPhoneForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
+          <!-- Emergency Info Form For Update -->
+          <ion-list margin-bottom>
+            <ion-list-header color="light">
+              <ion-label class="fw700">Emergency Information</ion-label>
+              <ion-button icon-left size="small" shape="round" [color]="add_emergencyInfo ? 'primary' : 'danger'"
+                text-center tappable (click)="addAction('add_emergencyInfo')">
+                {{add_btn_emergencyInfo}}
+                <ion-icon slot="start" [name]="add_emergencyInfo ? 'add' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-left [hidden]="emergencyInfo ? false : true"  class="formsdividing">
+              <ion-grid>
+                <ion-row>
+                  <ion-col><strong>Asthma</strong></ion-col>
+                  <ion-col text-right>
+                    <ion-button icon-left size="small" shape="round" [color]="emergencyInfo ? 'secondary' : 'danger'"
+                      text-center tappable (click)="action('emergencyInfo')">
+                      {{btn_emergencyInfo}}
+                      <ion-icon slot="start" [name]="emergencyInfo ? 'create' : 'arrow-up'"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div padding text-center [hidden]="emergencyInfo ? true : false">
+              <form [formGroup]="onUpdateEmergencyInfoForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-button slot="end" icon-left size="small" shape="round"
+                    [color]="emergencyInfo ? 'secondary' : 'danger'" text-center tappable
+                    (click)="action('emergencyInfo')">
+                    {{btn_emergencyInfo}}
+                    <ion-icon slot="start" [name]="emergencyInfo ? 'create' : 'arrow-up'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Disease Name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="diseasename" value="Asthma">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateEmergencyInfoForm.get('diseasename').touched && onUpdateEmergencyInfoForm.get('diseasename').hasError('required')">
+                  <ion-text color="warning">
+                    Disease Name is Empty
+                  </ion-text>
+                </p>
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('emergencyInfo')" [disabled]="!onUpdateEmergencyInfoForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+            <!-- Add New Emergency Info Form-->
+            <div padding text-center [hidden]="add_emergencyInfo ? true : false">
+              <form [formGroup]="onAddEmergencyInfoForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Dsease Name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="diseasename"></ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddEmergencyInfoForm.get('diseasename').touched && onAddEmergencyInfoForm.get('diseasename').hasError('required')">
+                  <ion-text color="warning">
+                    Disease Name is Empty
+                  </ion-text>
+                </p>
+
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="saveData('add_emergencyInfo')" [disabled]="!onAddEmergencyInfoForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
+          <!-- Emergency Contact Form For Update -->
+          <ion-list margin-bottom>
+            <ion-list-header color="light">
+              <ion-label class="fw700">Emergency Contact</ion-label>
+              <ion-button icon-left size="small" shape="round" [color]="add_emergencyContact ? 'primary' : 'danger'"
+                text-center tappable (click)="addAction('add_emergencyContact')">
+                {{add_btn_emergencyContact}}
+                <ion-icon slot="start" [name]="add_emergencyContact ? 'add' : 'arrow-up'"></ion-icon>
+              </ion-button>
+            </ion-list-header>
+
+            <div padding text-left [hidden]="emergencyContact ? false : true" class="formsdividing">
+              <ion-grid>
+                <ion-row>
+                  <ion-col><strong>Fist Last</strong></ion-col>
+                  <ion-col><strong>Father</strong></ion-col>
+                  <ion-col><strong>+491111111111</strong></ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col text-right>
+                    <ion-button icon-left size="small" shape="round" [color]="emergencyContact ? 'secondary' : 'danger'"
+                      text-center tappable (click)="action('emergencyContact')">
+                      {{btn_emergencyContact}}
+                      <ion-icon slot="start" [name]="emergencyContact ? 'create' : 'arrow-up'"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+            <div padding text-center [hidden]="emergencyContact ? true : false">
+              <form [formGroup]="onUpdateEmergencyContactForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-button slot="end" icon-left size="small" shape="round"
+                    [color]="emergencyContact ? 'secondary' : 'danger'" text-center tappable
+                    (click)="action('emergencyContact')">
+                    {{btn_emergencyContact}}
+                    <ion-icon slot="start" [name]="emergencyContact ? 'create' : 'arrow-up'"></ion-icon>
+                  </ion-button>
+                </ion-item>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Full Name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="fullname" value="First Last">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateEmergencyContactForm.get('fullname').touched && onUpdateEmergencyContactForm.get('fullname').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter The Full Name
+                  </ion-text>
+                </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Relation
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="relation" value="Father">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateEmergencyContactForm.get('relation').touched && onUpdateEmergencyContactForm.get('relation').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter The Relation
+                  </ion-text>
+                </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Phone Number
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="phonenumber" value="+491111111111">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onUpdateEmergencyContactForm.get('phonenumber').touched && onUpdateEmergencyContactForm.get('phonenumber').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Phone Number
+                  </ion-text>
+                </p>
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="updateData('emergencyContact')" [disabled]="!onUpdateEmergencyContactForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+            <!-- Add New Emergency Contact Form-->
+            <div padding text-center [hidden]="add_emergencyContact ? true : false">
+              <form [formGroup]="onAddEmergencyContactForm" class="list-form">
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Full Name
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="fullname" >
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddEmergencyContactForm.get('fullname').touched && onAddEmergencyContactForm.get('fullname').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter The Full Name
+                  </ion-text>
+                </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Relation
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="relation">
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddEmergencyContactForm.get('relation').touched && onAddEmergencyContactForm.get('relation').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter The Relation
+                  </ion-text>
+                </p>
+                <ion-item no-padding class="animated fadeInUp">
+                  <ion-label position="floating">
+                    <ion-icon name="phone" item-start></ion-icon>
+                    Phone Number
+                  </ion-label>
+                  <ion-input color="secondary" type="name" formControlName="phonenumber" >
+                  </ion-input>
+                </ion-item>
+                <p ion-text color="warning" class="text08"
+                  *ngIf="onAddEmergencyContactForm.get('phonenumber').touched && onAddEmergencyContactForm.get('phonenumber').hasError('required')">
+                  <ion-text color="warning">
+                    You Must Enter Phone Number
+                  </ion-text>
+                </p>
+
+
+                <ion-button icon-left size="medium" expand="full" shape="round" color="primary"
+                  (click)="saveData('add_emergencyContact')" [disabled]="!onAddEmergencyContactForm.valid" tappable>
+                  <ion-icon name="save"></ion-icon>
+                  Save
+                </ion-button>
+
+              </form>
+            </div>
+          </ion-list>
+
 
         </ion-col>
       </ion-row>
