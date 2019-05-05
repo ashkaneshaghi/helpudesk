@@ -26,7 +26,7 @@ export class AppComponent {
       this.appPages = [
         {
           title: 'Dashboard',
-          url: '/dashboard',
+          url: '/services',
           direct: 'root',
           icon: 'tv'
         },

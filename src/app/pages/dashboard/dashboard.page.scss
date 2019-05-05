@@ -1,0 +1,24 @@
+.tabsdecorating {
+    display: block !important;
+    white-space: nowrap !important;
+    font-size: 0 !important;
+    overflow: auto !important;
+    --background: var(--ion-color-primary) !important;
+
+
+    &::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+        display: none !important;
+    }
+
+    ion-tab-button {
+        display: inline-block !important;
+        min-width: 90px !important;
+        width: auto !important;
+        --color-selected: var(--ion-color-secondary) !important;
+        --color: var(--ion-color-light) !important;
+    }
+    .tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+        color: var(--ion-color-secondary) !important;
+    }}

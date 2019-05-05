@@ -80,6 +80,6 @@ export class RegisterPage implements OnInit {
   // Navigate To Dashboard
   goToDashboard(){
     // For Storing in Database and make Login
-    this.navCtrl.navigateRoot('/dashboard');
+    this.navCtrl.navigateRoot('/services');
   }
 }
