@@ -4,18 +4,38 @@
       <ion-menu-button color="secondary"></ion-menu-button>
     </ion-buttons>
     <ion-title>
-        <ion-text>
-          <ion-text class="fw700">Dashboard</ion-text>
-        </ion-text>
+      <ion-text>
+        <ion-text class="fw700">Dashboard</ion-text>
+      </ion-text>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-        <div padding-horizontal text-center class="animated fadeInDown">
-          <div class="logo"></div>
-        </div>
+  <div padding-horizontal text-center class="animated fadeInDown">
+    <div class="logo"></div>
+  </div>
+
+  <div padding-horizontal text-center class="animated fadeInDown" style="width: 80%;margin: auto;">
+    <ion-card text-center>
+      <ion-item text-center no-border>{{todayDate | date:'EEEE dd MMMM yyyy':'+0200'}}</ion-item>
+      <ion-item text-center no-border>Hello, FIRST MIDDLE LAST </ion-item>
+    </ion-card>
+  </div>
+
+  <div padding-horizontal text-center class="animated fadeInDown progress-wrapper">
+
+    <circle-progress [percent]="progressResult" [radius]="100" [animation]="true" [animationDuration]="1100">
+    </circle-progress>
+  </div>
+
+  <div padding-horizontal text-center class="animated fadeInDown" style="width: 95%;margin: auto;">
+    <ion-card text-center>
+      <ion-item text-center no-border>Tuesday, 14 May 2019</ion-item>
+      <ion-item text-center no-border>ICC Event / Description ...</ion-item>
+      <ion-item text-center no-border>Blue Tower, First Floor, Room 105</ion-item>
+    </ion-card>
+  </div>
 
 </ion-content>
-  
