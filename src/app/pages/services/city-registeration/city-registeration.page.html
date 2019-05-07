@@ -13,4 +13,51 @@
 
 <ion-content>
 
+  <!-- General Information for City Registration -->
+  <ion-card class="cardbg">
+    <ion-card-content>
+      <ion-item-divider class="dividercolor">
+        <ion-card-title>City Registration Information</ion-card-title>
+      </ion-item-divider>
+      <ul class="listtextstyle">
+        <li><p>On changing residence you must be registered within two weeks at one of the local Administration Offices.</p></li>
+        <li><p>You must visit the nearest Rathaus in order to get yourself registered, along with the following documents:</p><br/></li>
+          <ol>
+            <li><p>Passport</p></li>
+            <li><p>Admission or registration certificate from the university – original and photocopy – showing your field of study ('Fachrichtung'), number of semesters ('Semesterangabe') and course of studies ('Studiengang')</p></li>
+            <li><p>Certified proof of financing or evidence of payment for the 3 preceding months (e.g. bank statements) – original and copy</p></li>
+            <li><p>Proof of health insurance</p></li>
+            <li><p>1 biometric photograph</p></li>
+          </ol>
+        <li><p><b>EU nationals do not need a residence permit</b>. A certificate proving the freedom of movement within the EU can be issued on request.</p></li>
+        <li><p>It is essential that students intending to change their field of study ("Fachrichtung") or course of studies ('Studiengang') contact the Foreigners' Registration Office beforehand. The Foreigners' Registration Office will then determine if a change is possible in accordance with the Aliens Act. <b>Changing the field of study or the course of studies without changing the residence permit will result in its expiry</b>.</p></li>
+      </ul><br>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Contact Information for City Registration Office -->
+  <ion-card>
+    <ion-card-content class="justifyalign">
+      <ion-item-divider class="dividercolor">
+        <ion-card-title>Contact</ion-card-title>
+      </ion-item-divider><br/>
+
+      <ion-item color="primary" slot="start" class="locationitem">
+        <ion-label>Location</ion-label>        
+        <ion-select placeholder="Select your location" [(ngModel)]="cities">
+            <ion-select-option *ngFor="let cities of citiesList" [value]="cities.id">{{cities.place}}</ion-select-option>            
+        </ion-select>
+      </ion-item><br/>
+
+      <!-- Contact Information of the City Registration Office -->
+      <h3><ion-icon slot="start" name="pin" class="iconstyle"></ion-icon><b>{{citiesList[cities-1].add}}</b></h3>
+      <p class="paragraphtextstyle paragraphpadding">
+        {{citiesList[cities-1].addressLine1}}<br/>
+        {{citiesList[cities-1].addressLine2}}<br/><br/></p>
+        <ion-icon slot="start" name="call" class="iconstyle"></ion-icon><b>{{citiesList[cities-1].tel}}</b><br/>
+        <p class="paragraphtextstyle paragraphpadding">{{citiesList[cities-1].phone}}</p>
+    </ion-card-content>    
+  </ion-card>
+
 </ion-content>
+

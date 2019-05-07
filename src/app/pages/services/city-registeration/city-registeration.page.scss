@@ -1,0 +1,44 @@
+.locationitem{
+    //max-width: 100%;
+    width: auto;
+}
+
+@media screen and (max-width: 600px){
+
+    ion-title{
+        font-size: 16px;
+    }
+
+    ion-item{
+        font-size: 12px;
+        justify-content: flex-start;
+        font-size-adjust: inherit;
+        width:auto;
+        height: auto;
+    }
+
+    ion-img{
+        width: 25%;
+        height: 17%;
+        align-content: flex-start;
+        float: left;
+    }
+
+    p{
+        font-size: 12px;
+    }
+
+    ion-card-title{
+        font-size: 14px;
+    }
+}
+
+.iconstyle{
+    width: 15px;
+    height: 15px;
+    padding-right: 5px;
+}
+
+.paragraphpadding{
+    padding-left: 20px;
+}

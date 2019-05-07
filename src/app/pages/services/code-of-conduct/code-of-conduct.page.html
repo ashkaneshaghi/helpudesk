@@ -13,4 +13,48 @@
 
 <ion-content>
 
+  <ion-card class="cardbg">
+
+    <!-- Text content for Code of Conduct -->
+    <ion-card-content class="coctextalign ">
+      <ion-item-divider class="dividercolor">
+        <ion-card-title>Code of Conduct</ion-card-title>
+      </ion-item-divider><br/>
+
+      <p class="textstyle">Code of Conduct for all SRH University International Degree-Seeking and Exchange Students,</p><br/><br/>
+      <p class="textstyle">Students are reminded they are visiting SRH Heidelberg as representatives of their home countries and university. Although rules and regulations will differ in Germany from those familiar to each student, the German law must be adhered to at all times. In addition, there are requirements from SRH University Heidelberg, which you are expected to follow.</p><br/><br/>
+      <p class="textstyle">Breaches of this Code of Conduct can lead to disciplinary action being taken against a student, including expulsion from SRH University Heidelberg and university activities.</p><br/>
+      <p class="textstyle">- Students should conduct themselves in an orderly manner at all times. Violent or abusive behaviour will not be tolerated.</p><br/>
+      <p class="textstyle">- Alcohol consumption should be undertaken responsibly. Drunkenness will not be tolerated.</p><br/>
+      <p class="textstyle">- The use of drugs is strictly forbidden and under German law.</p><br/>
+      <p class="textstyle">- Weapons are illegal in Germany and no student should carry one.</p><br/>
+      <p class="textstyle">- Any involvement in illegal activities will not be tolerated.</p><br/>
+      <p class="textstyle">- Continuous “no-show” to lectures without reasonable circumstances may lead to expulsion from the program.</p><br/>
+      <p class="textstyle">- Respect to other cultures in the program in expected and this includes an appropriate dress code and conversation.</p><br/>        
+      <p class="textstyle">Terms of use of SRH Residential Halls, Common Areas and Campus:</p><br/><br/>
+      <p class="textstyle">Residence hall rooms, apartments, or common areas, such as lecture and study rooms, may not be used for illegal purposes. Students are responsible for ensuring that their personal conduct and the conduct of their guests is not in violation of university  policies or local, state or federal laws.
+        SRH reserves the right for personnel, acting in the performance of their duties, to enter student’s rooms in order to ensure that all health, safety and fire codes are being followed, provide maintenance and repairs, respond to emergencies, and to locate missing property and/or prohibited articles. Such entries may reveal violations of the SRH Student Conduct Code or the Terms of Use of the SRH Residential Halls, Common Areas, and Campus, which may result in fines and/or disciplinary action being taken against the student(s).
+        Smoking is not permitted anywhere within the university buildings or within 5 meters of any windows or doors.</p><br/><br/>
+      <p class="textstyle">Students must not cause damage to the accommodation areas (including if applicable the shared kitchen/bathroom), Halls of Residence, lecture or study rooms, or university grounds. Students must pay the costs of repairing any damage caused by them or their guests. Repair includes replacement of damaged items, if that is the most economical way of dealing with the damage. Students must keep their accommodation (and if not self-contained, any shared kitchen/bathroom) in a clean and tidy condition. And will be asked to rectify the matter if they do not do so.
+        Failure to comply with the Terms of Use may result in the university staff carrying out the cleaning duties and charging the reasonable cost to the student.
+        The possession, use, sale or other trafficking of illegal drugs or controlled substances is absolutely prohibited. Any student suspected of involvement in drug/controlled substances activity will be reported to the police. In the event of accusations or convictions of drug/controlled substance offence(s) against a student, the university reserves the right to permanently exclude the student from university activities, including expulsion from the program.
+        Pets of livestock are not permitted in the accommodation.</p><br/><br/>
+      <p class="textstyle">No person, other than yourself, may live in your accommodation without the express permission of the University Accommodation Service. Subletting , sharing and/or loaning your accommodation is not allowed under any circumstances.
+        No rubbish or other materials are permitted to be left near drains. This could create an obstruction to the drainage of sinks, baths, showers, lavatories, cisterns and any other pipe work; Any spillages must be cleaned up quickly to avoid injury or damage.
+        All food products, crockery, cutlery and cooking utensils are to be maintained, stored safely and hygienically.</p><br/><br/>        
+      <p class="textstyle">All rubbish to be disposed of, using all general waste and recycling facilities, as instructed, throughout the university.</p><br/><br/>              
+     
+      <!-- Checkbox component for reader's acknowledgement -->
+      <ion-checkbox color="primary" slot="start"></ion-checkbox>
+      <ion-label class="textstyle textpadding"><b>I agree to terms and conditions of Code of Conduct</b></ion-label><br/><br/>
+
+      <!-- Full Button for Appointment Navigation -->
+      <ion-button expand="full" color="primary" (click)="acknowledgeSubmit()">
+        <ion-icon slot="start" name="open"></ion-icon>
+        Submit
+      </ion-button>
+    
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

@@ -212,3 +212,65 @@
       margin-bottom: -2px;
     }
   }
+
+  .textalign{
+    text-align: center;
+}
+
+.label{
+    margin-left: 3%;
+}
+
+.avatarsize{
+    width:60% !important;  
+    height : 60% !important;  
+    max-width: 80px !important;  //any size
+    max-height: 80px !important; //any size 
+}
+
+
+.titlebg{
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-bottom:3%;
+    --background: #494949;
+}
+
+.titlecolor{    
+    --background: #494949;
+}
+
+.chipalign{
+    text-align: right;
+    align-content: center;
+    justify-content: right;
+}
+
+.justifyalign{
+    text-align: justify;
+}
+
+.paragraphtextstyle{
+    font-size: 8px;
+}
+
+.listtextstyle{
+    font-size: 14px;
+}
+
+.imgstyle{
+    width: 10%;
+    height: 5%;
+}
+
+.dividercolor{
+    --background: #f1f1f17c;
+}
+
+.textstyle{
+    font-size: 12px;
+}
+
+.cardwidth{
+    width: auto;
+}

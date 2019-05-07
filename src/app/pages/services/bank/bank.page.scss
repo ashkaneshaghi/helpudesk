@@ -1,0 +1,22 @@
+@media screen and (max-width: 600px){
+    ion-item{
+        font-size: 6px;
+        justify-content: flex-start;
+        font-size-adjust: inherit;
+    }
+
+    ion-img{
+        width: 25%;
+        height: 17%;
+        align-content: flex-start;
+        float: left;
+    }
+
+    p{
+        font-size: 12px;
+    }
+
+    ion-card-title{
+        font-size: 14px;
+    }
+}
