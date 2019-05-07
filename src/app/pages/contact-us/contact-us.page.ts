@@ -51,7 +51,7 @@ export class ContactUsPage implements OnInit {
       });
 
       toast.present();
-      this.navCtrl.navigateForward('/dashboard');
+      this.navCtrl.navigateForward('/services');
     });
 
   }
