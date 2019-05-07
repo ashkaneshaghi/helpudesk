@@ -30,13 +30,21 @@ export class AppComponent {
           direct: 'root',
           icon: 'tv'
         },
+        
+        {
+          title: 'Appointments',
+          url: '/appointments',
+          direct: 'forward',
+          icon: 'calendar'
+        },
+
         {
           title: 'About',
           url: '/about',
           direct: 'forward',
           icon: 'information-circle-outline'
         },
-  
+
         {
           title: 'Contact Us',
           url: '/contact-us',
