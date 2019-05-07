@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'about', loadChildren: './pages/about/about.module#AboutPageModule' },
   { path: 'contact-us', loadChildren: './pages/contact-us/contact-us.module#ContactUsPageModule' },
   { path: 'faq', loadChildren: './pages/faq/faq.module#FaqPageModule' },
+  { path: 'services/dashboard/progress-result', loadChildren: './pages/services/progress-result/progress-result.module#ProgressResultPageModule' },
+
 
 
 

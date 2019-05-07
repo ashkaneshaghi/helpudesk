@@ -26,7 +26,7 @@
 
   <div padding-horizontal text-center class="animated fadeInDown progress-wrapper">
 
-    <circle-progress [percent]="progressResult" [radius]="100" [animation]="true" [animationDuration]="1100">
+    <circle-progress [percent]="progressResult" [radius]="100" [animation]="true" [animationDuration]="1100" tappable (click)="goToProgressResult()">
     </circle-progress>
   </div>
 

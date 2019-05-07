@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,9 @@ export class DashboardPage implements OnInit {
   private todayDate: any;
   public progressResult: number;
 
-  constructor() { 
+  constructor(
+    public navCtrl: NavController,
+  ) { 
     this.todayDate = new Date().getTime();
     this.progressBarChecking();
   }
@@ -34,5 +37,10 @@ export class DashboardPage implements OnInit {
     }else {
       return "Not started"
     }
+  }
+
+  // Go to Progress Result Page
+  goToProgressResult() {
+    this.navCtrl.navigateForward('/services/dashboard/progress-result');
   }
 }
