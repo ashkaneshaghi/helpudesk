@@ -32,6 +32,13 @@
         <li><p><b>EU nationals do not need a residence permit</b>. A certificate proving the freedom of movement within the EU can be issued on request.</p></li>
         <li><p>It is essential that students intending to change their field of study ("Fachrichtung") or course of studies ('Studiengang') contact the Foreigners' Registration Office beforehand. The Foreigners' Registration Office will then determine if a change is possible in accordance with the Aliens Act. <b>Changing the field of study or the course of studies without changing the residence permit will result in its expiry</b>.</p></li>
       </ul><br>
+
+            <!-- Full Button for Appointment Navigation -->
+            <ion-button expand="full" color="primary" (click)="goToAppointment()">
+              <ion-icon slot="start" name="open"></ion-icon>
+              Appointment
+            </ion-button>
+      
     </ion-card-content>
   </ion-card>
 
@@ -42,7 +49,7 @@
         <ion-card-title>Contact</ion-card-title>
       </ion-item-divider><br/>
 
-      <ion-item color="primary" slot="start" class="locationitem">
+      <ion-item slot="start" class="locationitem">
         <ion-label>Location</ion-label>        
         <ion-select placeholder="Select your location" [(ngModel)]="cities">
             <ion-select-option *ngFor="let cities of citiesList" [value]="cities.id">{{cities.place}}</ion-select-option>            

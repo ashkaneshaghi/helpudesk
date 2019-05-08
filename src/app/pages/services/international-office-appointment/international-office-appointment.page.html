@@ -1,9 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>international-office-appointment</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" color="light">
+      <ion-back-button color="light" visible></ion-back-button>
+    </ion-buttons>
+    <ion-title>International Office Appointment</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <!-- LOGO About Us -->
+  <div class="bg-profile" text-center padding>
+    <img src="assets/img/aboutuslogo.png">
+  </div>
+
+  <!-- Contact Form -->
+  <div text-center padding>
+    
+    <ion-list class="contact">
+        <ion-list-header color="light">
+            <ion-label class="fw700">International Office Appointment</ion-label>
+        </ion-list-header>
+
+    </ion-list>
+        <form [formGroup]="onInternationalOfficeAppointmentForm" class="list-form">
+          <ion-item no-padding class="animated fadeInUp">
+            <ion-label>
+              <ion-icon name="calendar" item-start></ion-icon>
+              Date Of Appointment *
+            </ion-label>
+            <ion-datetime name="dateOfAppointment" formControlName="dateOfAppointment" display-format="YYYY-MM-DD" placeholder="Select Date">
+            </ion-datetime>
+          </ion-item>
+          <p ion-text color="warning" class="text08"
+            *ngIf="onInternationalOfficeAppointmentForm.get('dateOfAppointment').touched && onInternationalOfficeAppointmentForm.get('dateOfAppointment').hasError('required')">
+            <ion-text color="warning">
+              Please Select a Date
+            </ion-text>
+          </p>
+    
+
+          </form>
+          <div>
+            <ion-button icon-left size="medium" expand="full" shape="round" color="secondary" (click)='internationalOfficeAppointmentSend()' [disabled]="!onInternationalOfficeAppointmentForm.valid" tappable> 
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              Save
+            </ion-button>     
+          </div>
+
+
+
+  </div>
 
 </ion-content>

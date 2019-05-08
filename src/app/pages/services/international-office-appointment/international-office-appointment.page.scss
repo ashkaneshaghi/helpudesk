@@ -1,0 +1,27 @@
+// :host {
+//     ion-content {
+//         //--background: linear-gradient(-135deg, var(--ion-color-medium), var(--ion-color-light))
+//     }
+// }
+.team-avatar {
+    width: 68px;
+    height: 68px;
+    img {
+        border-radius: 50%;
+        border: solid 4px rgb(190, 226, 142);
+        display: inline;
+        box-shadow: 0 0 28px rgba(115, 243, 83, 0.658);
+    }
+  }
+  .item-inner {
+    border-width: 0;
+  }
+
+.contact {
+    ion-icon {
+        color: var(--ion-color-secondary)
+    }
+    strong {
+        color: var(--ion-color-secondary)
+    }
+}

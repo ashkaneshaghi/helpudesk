@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular'
+
 
 @Component({
   selector: 'app-city-registeration',
@@ -42,9 +44,16 @@ export class CityRegisterationPage implements OnInit {
     {id: "33", place: 'Ziegelhausen',   addressLine1: 'Kleingemünder Str. 18,',             addressLine2: '69118 Heidelberg',                phone: '+49 06221 5813840',       add: 'Address: ',      tel: 'Tel: '},
   ]
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+  ) { }
 
   ngOnInit() {
   }
+
+  goToAppointment() {
+    this.navCtrl.navigateForward('/services/city-registeration/appointment');
+  }
+
 
 }

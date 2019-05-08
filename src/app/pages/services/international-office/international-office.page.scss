@@ -1,14 +1,20 @@
-@media screen and (max-width: 600px){
+@media screen and (max-width: 701px){
     ion-item{
+
         font-size: 6px;
         justify-content: flex-start;
         font-size-adjust: inherit;
     }
 
-    ion-img{
-        //padding-right: 5px;
+    ion-avatar {
         width: 10px;
         height: 10px;
+    }
+
+    img{
+        //padding-right: 5px;
+        width: 12px;
+        height: 12px;
     }
 
     p{
@@ -32,10 +38,25 @@
 }
 
 .paragraphpadding{
-    padding-left: 20px;
+    padding-left: 0px;
 }
 
-ion-img{
-    width: 50px;
-    height: 50px;
+// ion-img{
+//     width: 100px;
+//     height: 100px;
+//     margin-top: 0px;
+//     padding-top: 0px;
+// }
+
+ion-avatar {
+    margin-top: 0px !important;
+    width: 100px;
+    height: 100px;
+    img {
+        width: 100px;
+        height: 100px;
+        display: block;
+        margin-top: 0px;
+    }
+
 }
